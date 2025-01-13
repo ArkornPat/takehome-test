@@ -2,12 +2,15 @@ import { useState } from 'react'
 import { ChevronDown, Bell, CircleHelp, ShoppingCart, Search } from 'lucide-react'
 import Link from 'next/link'
 
-export default function Header() {
+type Language = 'th' | 'en'
 
-  type Language = 'th' | 'en'
+type HeaderProps = {
+  currentLang: Language
+  setCurrentLang: (lang: Language) => void
+}
 
+export default function Header({ currentLang, setCurrentLang }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const [currentLang, setCurrentLang] = useState<Language>('th')
 
   const languages: { lang: Language; label: string }[]  = [
     { lang: 'th', label: 'ไทย' },
@@ -27,15 +30,16 @@ export default function Header() {
     },
     en: {
       sellerCentre: 'Seller Centre',
-      getStarted: 'Start Selling',
+      getStarted: 'Get Started',
       download: 'Download',
       followUs: 'Follow Us',
       notifications: 'Notifications',
       help: 'Help',
       register: 'Register',
-      searchPlaceholder: 'Search for products, brands and shops',
+      searchPlaceholder: 'Search for products and shops',
     },
   }
+
 
   return (
     <header className="w-full">
